@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 public class Editor {
 
     int id;
@@ -16,5 +18,18 @@ public class Editor {
                 "id=" + id +
                 ", editorName='" + editorName + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Editor)) return false;
+        Editor editor = (Editor) o;
+        return id == editor.id && Objects.equals(editorName, editor.editorName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, editorName);
     }
 }

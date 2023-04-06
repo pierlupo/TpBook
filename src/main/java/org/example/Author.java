@@ -1,12 +1,14 @@
 package org.example;
 
+import java.util.Objects;
+
 public class Author {
 
-    int id;
+    private int id;
 
-    String firstName;
+    private String firstName;
 
-    String lastName;
+    private String lastName;
 
     public Author(int id, String firstName, String lastName) {
         this.id = id;
@@ -21,5 +23,18 @@ public class Author {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Author)) return false;
+        Author author = (Author) o;
+        return id == author.id && Objects.equals(firstName, author.firstName) && Objects.equals(lastName, author.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName);
     }
 }
